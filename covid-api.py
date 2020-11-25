@@ -1,4 +1,5 @@
 import requests
+# Basic API
 r = requests.get('https://covid19.th-stat.com/api/open/today')
 # print(r.json())
 print("UpdateDate : ", r.json()['UpdateDate'])
