@@ -22,6 +22,8 @@ data = soup(page_html, 'html.parser')
 # twitter scraping basic
 # tag div  class : css-1dbjc4n
 
+# fix bug 2020 : # tag div : data-testid="tweet"
+
 tweettext = data.findAll('div',{'class':'css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0'})
 
 print(tweettext)
