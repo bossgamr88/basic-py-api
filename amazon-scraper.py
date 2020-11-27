@@ -150,9 +150,36 @@ def get_url(search_item):
 
 # Putting it all together
 def main(seach_term):
-    "Run main program routing "
 
-    #
+    # start up the webdriver
+
+    record = []
+    url = get_url(seach_term)
+
+    for page in range(1,10): # กำหนดจำนวน loop ดึงหน้า default คือ 21
+        driver.get(url.format(page))
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        results = soup.find_all('div', {'data-component-type': 's-search-result'})
+
+        for item in results:
+            record = extract_record(item)
+            if record:
+                records.append(record)
+
+    return record
+
+main('digimon anime')
+
+driver.close()
+
+# save data to csv file
+with open('results.csv', 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerow(['Description','Price','Rating','ReviewCount','Url'])
+    writer.writerows(records) # writerow ไม่เติม s เเม่งจะเป็นเเนวนอนหมดเลย โครตซวย 55
+
+
+
 
 
 
